@@ -181,11 +181,14 @@ p {
 }
 
 body[data-page="about"] .site-header,
-body[data-page="work"] .site-header,
 body[data-page="expertise"] .site-header,
 body[data-page="team"] .site-header,
 body[data-page="contact"] .site-header {
   background: var(--bg);
+}
+
+body[data-page="work"] .site-header {
+  background: linear-gradient(to bottom, rgba(5, 5, 5, 0.82), transparent);
 }
 
 .brand {
@@ -750,7 +753,7 @@ body[data-page="contact"] .site-header {
   width: 100%;
   aspect-ratio: 21 / 9;
   overflow: hidden;
-  margin: 5.25rem 0 0;
+  margin: 0;
 }
 
 .work-banner__media {
