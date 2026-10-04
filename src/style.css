@@ -228,12 +228,39 @@ body[data-page="work"] .site-header {
 }
 
 .menu-toggle {
-  justify-self: end;
   width: 2.5rem;
   height: 2.5rem;
   display: grid;
   place-content: center;
   gap: 0.4rem;
+}
+
+.header-end {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.social {
+  width: 2.15rem;
+  height: 2.15rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.social:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.social svg {
+  width: 0.92rem;
+  height: 0.92rem;
+  fill: currentColor;
 }
 
 .menu-toggle span {
