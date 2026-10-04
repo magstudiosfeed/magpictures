@@ -132,10 +132,12 @@ function initChroma() {
   window.addEventListener(
     "pointermove",
     (event) => {
-      const x = (event.clientX / window.innerWidth) * 2 - 1;
-      const y = (event.clientY / window.innerHeight) * 2 - 1;
-      root.style.setProperty("--ab-x", x.toFixed(3));
-      root.style.setProperty("--ab-y", y.toFixed(3));
+      const x = event.clientX / window.innerWidth;
+      const y = event.clientY / window.innerHeight;
+      root.style.setProperty("--cx", `${(x * 100).toFixed(2)}%`);
+      root.style.setProperty("--cy", `${(y * 100).toFixed(2)}%`);
+      root.style.setProperty("--ab-x", (x * 2 - 1).toFixed(3));
+      root.style.setProperty("--ab-y", (y * 2 - 1).toFixed(3));
     },
     { passive: true }
   );
@@ -153,77 +155,129 @@ function formatTime(seconds) {
 function initReelPlayer() {
   const trigger = document.querySelector("[data-reel]");
   const bg = trigger?.querySelector("video");
-  const dialog = document.getElementById("reel-player");
-  if (!trigger || !bg || !dialog) return;
+  const overlay = document.getElementById("reel-player");
+  if (!trigger || !bg || !overlay) return;
 
-  const player = dialog.querySelector(".player__video");
-  const playBtn = dialog.querySelector("[data-play]");
-  const muteBtn = dialog.querySelector("[data-mute]");
-  const seek = dialog.querySelector("[data-seek]");
-  const vol = dialog.querySelector("[data-vol]");
-  const fullBtn = dialog.querySelector("[data-full]");
-  const closeBtn = dialog.querySelector("[data-close]");
-  const src = bg.currentSrc || bg.querySelector("source")?.src;
-  if (src) player.src = src;
+  const player = overlay.querySelector(".player__video");
+  const playBtn = overlay.querySelector("[data-play]");
+  const muteBtn = overlay.querySelector("[data-mute]");
+  const seek = overlay.querySelector("[data-seek]");
+  const timeEl = overlay.querySelector("[data-time]");
+  const durEl = overlay.querySelector("[data-dur]");
+  const fullBtn = overlay.querySelector("[data-full]");
+  const backBtn = overlay.querySelector("[data-close]");
+  let opening = false;
 
-  const syncPlayLabel = () => {
-    playBtn.textContent = player.paused ? "Play" : "Pause";
+  player.src = "/video/MAG_REEL_v01.mp4";
+
+  const setPlaying = (playing) => {
+    overlay.classList.toggle("is-playing", playing);
+    playBtn.setAttribute("aria-label", playing ? "Pause" : "Play");
+  };
+
+  const setMuted = (muted) => {
+    overlay.classList.toggle("is-muted", muted);
+    muteBtn.setAttribute("aria-label", muted ? "Unmute" : "Mute");
+  };
+
+  const zoomFromHero = () => {
+    const rect = trigger.getBoundingClientRect();
+    const sx = rect.width / window.innerWidth;
+    const sy = rect.height / window.innerHeight;
+    const x = rect.left + rect.width / 2 - window.innerWidth / 2;
+    const y = rect.top + rect.height / 2 - window.innerHeight / 2;
+    gsap.set(overlay, { scaleX: sx, scaleY: sy, x, y, opacity: 1 });
+    gsap.set(".player__bar, .player__back", { opacity: 0 });
+    gsap.to(overlay, {
+      scaleX: 1,
+      scaleY: 1,
+      x: 0,
+      y: 0,
+      duration: reduceMotion ? 0 : 0.85,
+      ease: "power3.inOut",
+    });
+    gsap.to(".player__bar, .player__back", {
+      opacity: 1,
+      duration: 0.4,
+      delay: reduceMotion ? 0 : 0.45,
+    });
   };
 
   const open = async () => {
-    bg.pause();
+    if (opening || !overlay.hidden) return;
+    opening = true;
+    overlay.hidden = false;
+    document.body.classList.add("player-open");
     player.currentTime = bg.currentTime || 0;
     player.muted = false;
-    player.volume = Number(vol.value);
-    dialog.showModal();
+    player.volume = 1;
+    setMuted(false);
+    bg.pause();
+    zoomFromHero();
     try {
       await player.play();
     } catch {
-      /* autoplay with sound may need a second click */
+      setPlaying(false);
     }
-    syncPlayLabel();
+    opening = false;
   };
 
   const close = () => {
+    const finish = () => {
+      overlay.hidden = true;
+      document.body.classList.remove("player-open");
+      gsap.set(overlay, { clearProps: "transform,x,y,scaleX,scaleY,opacity" });
+      bg.currentTime = player.currentTime || 0;
+      bg.muted = true;
+      bg.play().catch(() => {});
+    };
+
     player.pause();
-    bg.currentTime = player.currentTime || 0;
-    bg.muted = true;
-    bg.play().catch(() => {});
-    dialog.close();
+    if (reduceMotion) {
+      finish();
+      return;
+    }
+    gsap.to(".player__bar, .player__back", { opacity: 0, duration: 0.2 });
+    gsap.to(overlay, {
+      scale: 1.06,
+      opacity: 0,
+      duration: 0.4,
+      ease: "power2.in",
+      onComplete: finish,
+    });
   };
 
   trigger.addEventListener("click", open);
-  closeBtn.addEventListener("click", close);
-  dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) close();
-  });
-  dialog.addEventListener("close", () => {
-    player.pause();
-    bg.play().catch(() => {});
+  backBtn.addEventListener("click", close);
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !overlay.hidden) close();
   });
 
   playBtn.addEventListener("click", () => {
     if (player.paused) player.play();
     else player.pause();
   });
-  player.addEventListener("play", syncPlayLabel);
-  player.addEventListener("pause", syncPlayLabel);
+  player.addEventListener("click", () => {
+    if (player.paused) player.play();
+    else player.pause();
+  });
+  player.addEventListener("play", () => setPlaying(true));
+  player.addEventListener("pause", () => setPlaying(false));
 
   muteBtn.addEventListener("click", () => {
     player.muted = !player.muted;
-    muteBtn.textContent = player.muted ? "Muted" : "Sound";
+    setMuted(player.muted);
   });
 
-  vol.addEventListener("input", () => {
-    player.volume = Number(vol.value);
-    player.muted = player.volume === 0;
-    muteBtn.textContent = player.muted ? "Muted" : "Sound";
+  player.addEventListener("loadedmetadata", () => {
+    durEl.textContent = formatTime(player.duration);
   });
 
   player.addEventListener("timeupdate", () => {
     if (!player.duration) return;
     seek.value = String(Math.round((player.currentTime / player.duration) * 1000));
-    playBtn.title = `${formatTime(player.currentTime)} / ${formatTime(player.duration)}`;
+    timeEl.textContent = formatTime(player.currentTime);
+    durEl.textContent = formatTime(player.duration);
   });
 
   seek.addEventListener("input", () => {
@@ -232,9 +286,8 @@ function initReelPlayer() {
   });
 
   fullBtn.addEventListener("click", async () => {
-    const node = dialog.querySelector(".player__shell");
     if (!document.fullscreenElement) {
-      await node.requestFullscreen?.();
+      await overlay.requestFullscreen?.();
     } else {
       await document.exitFullscreen?.();
     }

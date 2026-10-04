@@ -38,13 +38,31 @@
             preload="metadata"
             poster="/images/hero.jpg"
           >
-            <source src="/video/reel.mp4" type="video/mp4" />
-            <source src="/video/reel.webm" type="video/webm" />
+            <source src="/video/MAG_REEL_v01.mp4" type="video/mp4" />
+            <source src="/video/MAG_REEL_v01.mov" type="video/quicktime" />
           </video>
           <div class="hero__veil"></div>
-          <span class="reel__hint">Play reel</span>
         </button>
+
+        <div class="hero__content">
+          <h1 class="hero__title">
+            <span class="hero__brand">
+              <span class="hero__mag">MAG</span>
+              <span class="hero__pictures">PICTURES</span>
+            </span>
+            <span class="hero__title-sub"
+              >A 3D animation studio for film, games &amp; worlds that feel
+              alive.</span
+            >
+          </h1>
+          <a class="text-link" href="/work/" data-cursor="link">
+            Stories in motion
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
         <div class="hero__scroll" aria-hidden="true"><span>Scroll</span></div>
+        <span class="reel__hint">Play reel</span>
       </section>
 
       <section class="home-manifesto">
@@ -80,19 +98,20 @@
       </div>
     </main>
 
-    <dialog class="player" id="reel-player">
-      <div class="player__shell">
-        <video class="player__video" playsinline></video>
-        <div class="player__ui">
-          <button class="player__play" type="button" data-play aria-label="Play or pause">Play</button>
-          <input class="player__seek" type="range" min="0" max="1000" value="0" data-seek aria-label="Seek" />
-          <button class="player__mute" type="button" data-mute aria-label="Mute">Sound</button>
-          <input class="player__vol" type="range" min="0" max="1" step="0.05" value="1" data-vol aria-label="Volume" />
-          <button class="player__full" type="button" data-full aria-label="Fullscreen">Full</button>
-          <button class="player__close" type="button" data-close aria-label="Close">Close</button>
-        </div>
+    <div class="player" id="reel-player" hidden>
+      <button class="player__back" type="button" data-close>
+        <span aria-hidden="true">←</span> Back
+      </button>
+      <video class="player__video" playsinline></video>
+      <div class="player__bar">
+        <button class="player__play" type="button" data-play aria-label="Play or pause"></button>
+        <span class="player__time" data-time>0:00</span>
+        <input class="player__seek" type="range" min="0" max="1000" value="0" data-seek aria-label="Seek" />
+        <span class="player__time" data-dur>0:00</span>
+        <button class="player__mute" type="button" data-mute aria-label="Mute"></button>
+        <button class="player__full" type="button" data-full aria-label="Fullscreen"></button>
       </div>
-    </dialog>
+    </div>
 
     <footer class="site-footer" id="site-footer"></footer>
     <script type="module" src="/src/main.js"></script>

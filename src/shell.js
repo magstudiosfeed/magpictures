@@ -68,7 +68,7 @@ export function mountShell() {
     const chroma = document.createElement('div')
     chroma.className = 'chroma'
     chroma.setAttribute('aria-hidden', 'true')
-    chroma.innerHTML = '<div class="chroma__frame"></div><div class="chroma__rim"></div>'
+    chroma.innerHTML = '<div class="chroma__r"></div><div class="chroma__g"></div><div class="chroma__b"></div>'
     document.body.appendChild(chroma)
   }
 }
