@@ -6,7 +6,7 @@
     <title>MAG PICTURES — 3D Animation & VFX Studio</title>
     <meta
       name="description"
-      content="MAG Pictures — a 3D animation and VFX studio crafting stories in motion."
+      content="MAG Pictures — a creative space for cinematic 3D animation and VFX."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,50 +27,72 @@
     <div class="mobile-nav" id="mobile-nav" hidden></div>
 
     <main>
-      <section class="hero">
-        <div class="hero__media" data-parallax>
-          <img src="/images/hero.jpg" alt="Cinematic character portrait by MAG Pictures" />
+      <section class="hero hero--reel">
+        <button class="reel" type="button" data-reel data-cursor="media" aria-label="Play reel with sound">
+          <video
+            class="reel__bg"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="/images/hero.jpg"
+          >
+            <source src="/video/reel.mp4" type="video/mp4" />
+            <source src="/video/reel.webm" type="video/webm" />
+          </video>
           <div class="hero__veil"></div>
-        </div>
-
-        <div class="hero__content">
-          <h1 class="hero__title">
-            <span class="hero__brand">
-              <span class="hero__mag">MAG</span>
-              <span class="hero__pictures">PICTURES</span>
-            </span>
-            <span class="hero__title-sub"
-              >A 3D animation studio for film, games &amp; worlds that feel
-              alive.</span
-            >
-          </h1>
-          <a class="text-link" href="work.html" data-cursor="link">
-            Stories in motion
-            <span class="arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
-
+          <span class="reel__hint">Play reel</span>
+        </button>
         <div class="hero__scroll" aria-hidden="true"><span>Scroll</span></div>
       </section>
 
-      <section class="section home-strip">
-        <div class="section__rule reveal"></div>
-        <div class="home-strip__grid">
-          <a class="home-card reveal" href="about.html" data-cursor="link">
-            <p class="label">About</p>
-            <h2>Different backgrounds. Same vision.</h2>
-          </a>
-          <a class="home-card reveal" href="expertise.html" data-cursor="link">
-            <p class="label">Expertise</p>
-            <h2>Full-service 3D &amp; VFX</h2>
-          </a>
-          <a class="home-card reveal" href="contact.html" data-cursor="link">
-            <p class="label">Contact</p>
-            <h2>Let’s work together</h2>
-          </a>
+      <section class="home-manifesto">
+        <p class="label reveal">Manifesto</p>
+        <h1 class="home-manifesto__title reveal">
+          We are not a conventional production company.<br />
+          We are not a service studio.<br />
+          We are a creative space.
+        </h1>
+        <div class="home-manifesto__cols">
+          <p class="reveal">
+            A collective of young CGI artists with a clear vision, a shared
+            passion, and a creative hunger: to create top-quality 3D short films
+            that leave a lasting impact.
+          </p>
+          <p class="reveal">
+            We unite narrative freedom, ambitious art direction, and an
+            obsessive technical execution. Niche audiovisual production. Young
+            adult animation.
+          </p>
         </div>
       </section>
+
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track">
+          <span>Narrative freedom</span>
+          <span>Ambitious art direction</span>
+          <span>Obsessive technical execution</span>
+          <span>Narrative freedom</span>
+          <span>Ambitious art direction</span>
+          <span>Obsessive technical execution</span>
+        </div>
+      </div>
     </main>
+
+    <dialog class="player" id="reel-player">
+      <div class="player__shell">
+        <video class="player__video" playsinline></video>
+        <div class="player__ui">
+          <button class="player__play" type="button" data-play aria-label="Play or pause">Play</button>
+          <input class="player__seek" type="range" min="0" max="1000" value="0" data-seek aria-label="Seek" />
+          <button class="player__mute" type="button" data-mute aria-label="Mute">Sound</button>
+          <input class="player__vol" type="range" min="0" max="1" step="0.05" value="1" data-vol aria-label="Volume" />
+          <button class="player__full" type="button" data-full aria-label="Fullscreen">Full</button>
+          <button class="player__close" type="button" data-close aria-label="Close">Close</button>
+        </div>
+      </div>
+    </dialog>
 
     <footer class="site-footer" id="site-footer"></footer>
     <script type="module" src="/src/main.js"></script>

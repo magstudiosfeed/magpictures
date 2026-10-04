@@ -5,8 +5,7 @@ import { fileURLToPath } from 'url'
 const root = fileURLToPath(new URL('.', import.meta.url))
 
 export default defineConfig({
-  // Relative base works for both github.io/magpictures AND custom domain root
-  base: './',
+  base: '/',
   server: {
     port: 5173,
     open: true,
@@ -15,11 +14,11 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(root, 'index.html'),
-        about: resolve(root, 'about.html'),
-        work: resolve(root, 'work.html'),
-        expertise: resolve(root, 'expertise.html'),
-        team: resolve(root, 'team.html'),
-        contact: resolve(root, 'contact.html'),
+        about: resolve(root, 'about/index.html'),
+        work: resolve(root, 'work/index.html'),
+        expertise: resolve(root, 'expertise/index.html'),
+        team: resolve(root, 'team/index.html'),
+        contact: resolve(root, 'contact/index.html'),
       },
     },
   },

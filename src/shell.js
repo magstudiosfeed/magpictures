@@ -1,18 +1,24 @@
-const base = import.meta.env.BASE_URL
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`
+
+function path(slug = '') {
+  return slug ? `${base}${slug}/` : base
+}
 
 const links = [
-  { href: 'about.html', label: 'About', page: 'about' },
-  { href: 'work.html', label: 'Work', page: 'work' },
-  { href: 'expertise.html', label: 'Expertise', page: 'expertise' },
-  { href: 'team.html', label: 'Team', page: 'team' },
-  { href: 'contact.html', label: 'Contact', page: 'contact' },
+  { slug: 'about', label: 'About' },
+  { slug: 'work', label: 'Work' },
+  { slug: 'expertise', label: 'Expertise' },
+  { slug: 'team', label: 'Team' },
+  { slug: 'contact', label: 'Contact' },
 ]
 
 function navLinks(active) {
   return links
     .map(
-      ({ href, label, page }) =>
-        `<a href="${base}${href}" class="${page === active ? 'is-active' : ''}">${label}</a>`
+      ({ slug, label }) =>
+        `<a href="${path(slug)}" class="${slug === active ? 'is-active' : ''}">${label}</a>`
     )
     .join('')
 }
@@ -25,7 +31,7 @@ export function mountShell() {
 
   if (header) {
     header.innerHTML = `
-      <a class="brand" href="${base}" aria-label="MAG Pictures home">
+      <a class="brand" href="${path()}" aria-label="MAG Pictures home">
         <img class="brand__logo" src="${base}images/logo-clear.png" alt="MAG Pictures" width="120" height="120" />
       </a>
       <nav class="nav" aria-label="Primary">${navLinks(page)}</nav>
@@ -40,16 +46,29 @@ export function mountShell() {
   }
 
   if (footer) {
+    const contactCta =
+      page === 'contact'
+        ? ''
+        : `<a class="text-link" href="${path('contact')}" data-cursor="link">
+            Contact us <span class="arrow" aria-hidden="true">→</span>
+          </a>`
+
     footer.innerHTML = `
-      <a class="site-footer__brand" href="${base}" aria-label="MAG Pictures home">
+      <a class="site-footer__brand" href="${path()}" aria-label="MAG Pictures home">
         <img src="${base}images/mark-3.svg" alt="" width="72" height="44" />
       </a>
       <div class="site-footer__meta">
         <p class="site-footer__copy">© 2026 MAG Pictures</p>
-        <a class="text-link" href="${base}contact.html" data-cursor="link">
-          Contact us <span class="arrow" aria-hidden="true">→</span>
-        </a>
+        ${contactCta}
       </div>
     `
+  }
+
+  if (!document.querySelector('.chroma')) {
+    const chroma = document.createElement('div')
+    chroma.className = 'chroma'
+    chroma.setAttribute('aria-hidden', 'true')
+    chroma.innerHTML = '<div class="chroma__frame"></div><div class="chroma__rim"></div>'
+    document.body.appendChild(chroma)
   }
 }
