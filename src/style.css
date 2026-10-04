@@ -576,14 +576,14 @@ p {
 .about-city {
   position: relative;
   isolation: isolate;
-  height: min(78svh, 52rem);
+  height: min(58svh, 38rem);
   overflow: hidden;
   margin: 0 0 4rem;
 }
 
 .about-city__media {
   position: absolute;
-  inset: -18% 0;
+  inset: -8% 0;
   z-index: 0;
 }
 
@@ -592,7 +592,7 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 68% 40%;
+  object-position: 50% 42%;
   will-change: transform;
 }
 

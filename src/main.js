@@ -134,10 +134,10 @@ function initParallaxBands() {
 
     gsap.fromTo(
       img,
-      { yPercent: -12, scale: 1.14 },
+      { yPercent: -6, scale: 1.04 },
       {
-        yPercent: 12,
-        scale: 1.02,
+        yPercent: 6,
+        scale: 1,
         ease: "none",
         scrollTrigger: {
           trigger: band,
