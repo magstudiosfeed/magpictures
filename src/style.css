@@ -161,69 +161,20 @@ p {
 }
 
 .brand {
-  display: inline-grid;
-  gap: 0.35rem;
+  display: inline-flex;
+  align-items: center;
   justify-self: start;
-  justify-items: start;
+  transition: opacity 0.3s var(--ease);
 }
 
-.brand__marks {
-  display: grid;
-  grid-auto-flow: column;
-  gap: 0.22rem;
+.brand:hover {
+  opacity: 0.82;
 }
 
-.brand__marks span {
-  position: relative;
-  width: 0.62rem;
-  height: 0.9rem;
-  background: #fff;
-}
-
-.brand__marks span:first-child {
-  border-radius: 0;
-}
-
-.brand__marks span:not(:first-child) {
-  border-radius: 0 0.5rem 0 0;
-}
-
-.brand__marks span::after {
-  content: "";
-  position: absolute;
-  inset: 0.14rem -0.14rem -0.14rem 0.14rem;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: inherit;
-  transition: transform 0.45s var(--ease);
-}
-
-.brand:hover .brand__marks span::after {
-  transform: translate(2px, 2px);
-}
-
-.brand__wordmark {
-  display: grid;
-  gap: 0.12rem;
-  line-height: 1;
-}
-
-.brand__wordmark strong {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.brand__wordmark em {
-  font-family: var(--font-body);
-  font-style: normal;
-  font-size: 0.52rem;
-  font-weight: 300;
-  letter-spacing: 0.58em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
-  margin-right: -0.58em;
+.brand__logo {
+  display: block;
+  width: clamp(72px, 9vw, 96px);
+  height: auto;
 }
 
 .nav {
@@ -331,12 +282,13 @@ p {
 
 .hero__content {
   position: relative;
-  z-index: 1;
-  max-width: 18ch;
+  z-index: 2;
+  max-width: min(34rem, 100%);
+  padding-left: 2.5rem;
 }
 
 .hero__content .eyebrow,
-.hero__content .hero__title > span:first-child,
+.hero__content .hero__brand,
 .hero__content .hero__title-sub,
 .hero__content .text-link {
   opacity: 0;
@@ -354,26 +306,42 @@ p {
 
 .hero__title {
   display: grid;
-  gap: 1.25rem;
+  gap: 1.35rem;
+}
+
+.hero__brand {
+  display: grid;
+  gap: 0.2rem;
+  width: fit-content;
+}
+
+.hero__mag {
   font-family: var(--font-display);
+  font-size: clamp(3.4rem, 10vw, 7rem);
   font-weight: 400;
-  letter-spacing: 0.04em;
-  line-height: 1.05;
+  letter-spacing: 0.02em;
+  line-height: 0.92;
   text-transform: uppercase;
 }
 
-.hero__title > span:first-child {
-  font-size: clamp(2.8rem, 8.5vw, 6.2rem);
+.hero__pictures {
+  font-family: var(--font-body);
+  font-size: clamp(0.78rem, 1.7vw, 1.15rem);
+  font-weight: 300;
+  letter-spacing: 0.72em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+  margin-right: -0.72em;
 }
 
 .hero__title-sub {
-  max-width: 28ch;
+  max-width: 32ch;
   font-family: var(--font-body);
-  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-weight: 300;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   line-height: 1.45;
-  text-transform: none;
   color: rgba(255, 255, 255, 0.82);
 }
 
@@ -384,14 +352,15 @@ p {
 .hero__scroll {
   position: absolute;
   left: var(--pad);
-  bottom: 35%;
+  bottom: 1.5rem;
   z-index: 1;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
 }
 
 .hero__scroll span {
@@ -446,10 +415,10 @@ p {
 
 .display {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(2rem, 5vw, 3.6rem);
   font-weight: 400;
-  letter-spacing: 0.04em;
-  line-height: 1.08;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
   text-transform: uppercase;
 }
 
@@ -816,41 +785,36 @@ p {
 }
 
 .site-footer {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
+  flex-wrap: wrap;
   align-items: end;
-  gap: 1.25rem 2rem;
+  justify-content: space-between;
+  gap: 1.5rem 2rem;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 2rem var(--pad) 3rem;
+  padding: 2.5rem var(--pad) 3rem;
   border-top: 1px solid var(--line);
 }
 
 .site-footer__brand img {
-  width: 110px;
+  display: block;
+  width: clamp(120px, 16vw, 168px);
   height: auto;
   object-fit: contain;
 }
 
-.site-footer__copy,
-.socials a {
+.site-footer__meta {
+  display: grid;
+  gap: 0.85rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.site-footer__copy {
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
-}
-
-.site-footer .text-link {
-  justify-self: end;
-}
-
-.socials {
-  display: flex;
-  gap: 1.25rem;
-}
-
-.socials a:hover {
-  color: var(--accent);
 }
 
 .reveal {
@@ -897,7 +861,8 @@ p {
 
 @media (min-width: 980px) {
   .hero__content {
-    max-width: 22ch;
+    max-width: min(40rem, 52vw);
+    padding-left: 3rem;
   }
 
   .expertise__grid {

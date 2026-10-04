@@ -26,13 +26,7 @@ export function mountShell() {
   if (header) {
     header.innerHTML = `
       <a class="brand" href="${base}" aria-label="MAG Pictures home">
-        <span class="brand__marks" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
-        <span class="brand__wordmark">
-          <strong>MAG</strong>
-          <em>PICTURES</em>
-        </span>
+        <img class="brand__logo" src="${base}images/logo-clear.png" alt="MAG Pictures" width="120" height="120" />
       </a>
       <nav class="nav" aria-label="Primary">${navLinks(page)}</nav>
       <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
@@ -48,17 +42,14 @@ export function mountShell() {
   if (footer) {
     footer.innerHTML = `
       <a class="site-footer__brand" href="${base}">
-        <img src="${base}images/logo.png" alt="MAG Pictures" width="140" height="140" />
+        <img src="${base}images/logo-clear.png" alt="MAG Pictures" width="160" height="160" />
       </a>
-      <p class="site-footer__copy">© 2026 MAG Pictures</p>
-      <div class="socials">
-        <a href="#" aria-label="Instagram" data-cursor="link">IG</a>
-        <a href="#" aria-label="LinkedIn" data-cursor="link">LI</a>
-        <a href="#" aria-label="Vimeo" data-cursor="link">VM</a>
+      <div class="site-footer__meta">
+        <p class="site-footer__copy">© 2026 MAG Pictures</p>
+        <a class="text-link" href="${base}contact.html" data-cursor="link">
+          Contact us <span class="arrow" aria-hidden="true">→</span>
+        </a>
       </div>
-      <a class="text-link" href="${base}contact.html" data-cursor="link">
-        Contact us <span class="arrow" aria-hidden="true">→</span>
-      </a>
     `
   }
 }

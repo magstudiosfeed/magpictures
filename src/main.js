@@ -91,7 +91,7 @@ function initHero() {
 
   if (!reduceMotion) {
     gsap.fromTo(
-      ".hero__title > span:first-child, .hero__title-sub, .eyebrow, .hero__content .text-link",
+      ".hero__brand, .hero__title-sub, .eyebrow, .hero__content .text-link",
       { opacity: 0, y: 40 },
       {
         opacity: 1,
@@ -116,7 +116,7 @@ function initHero() {
   } else {
     document
       .querySelectorAll(
-        ".hero__title > span:first-child, .hero__title-sub, .eyebrow, .hero__content .text-link"
+        ".hero__brand, .hero__title-sub, .eyebrow, .hero__content .text-link"
       )
       .forEach((el) => {
         el.style.opacity = "1";
