@@ -22,16 +22,7 @@
     <header class="site-header" id="site-header"></header>
     <div class="mobile-nav" id="mobile-nav" hidden></div>
     <main>
-      <section class="page-hero">
-        <p class="label reveal">About Us</p>
-        <h1 class="display display--xl reveal">Different backgrounds. Same vision.</h1>
-        <p class="lede reveal">
-          Artists, technical directors, and story people — one obsession: images
-          that move people. Minimal noise. Maximum craft.
-        </p>
-      </section>
-
-      <section class="section about-boolean-wrap">
+      <section class="about-split">
         <svg
           class="about-boolean reveal"
           viewBox="0 0 446 304"
@@ -40,16 +31,18 @@
         >
           <defs>
             <clipPath id="about-clip-a">
-              <path d="M2 283V2H87.5V283H2Z" />
+              <path
+                d="M14 2H76A12 12 0 0 1 88 14V271A12 12 0 0 1 76 283H14A12 12 0 0 1 2 271V14A12 12 0 0 1 14 2Z"
+              />
             </clipPath>
             <clipPath id="about-clip-b">
               <path
-                d="M179 283.667V3.66974C179 3.66974 246.923 -4.60035 250 15.6699C263.487 30 264.5 43 264.5 61.1674V283.667H179Z"
+                d="M191 283.667H252.5A12 12 0 0 0 264.5 271.667V61.167C264.5 43 263.487 30 250 15.67C246.923-4.6 179-4.6 179 3.67V271.667A12 12 0 0 0 191 283.667Z"
               />
             </clipPath>
             <clipPath id="about-clip-c">
               <path
-                d="M340 283.667V3.66974C340 3.66974 391.923 -4.60035 411 15.6699C424.487 30 425.5 43 425.5 61.1674V283.667H340Z"
+                d="M352 283.667H413.5A12 12 0 0 0 425.5 271.667V61.167C425.5 43 424.487 30 411 15.67C407.923-4.6 340-4.6 340 3.67V271.667A12 12 0 0 0 352 283.667Z"
               />
             </clipPath>
           </defs>
@@ -80,24 +73,41 @@
             height="480"
             preserveAspectRatio="xMidYMin slice"
           />
+          <g class="about-boolean__frame" fill="none" stroke="#fff" stroke-width="3">
+            <path
+              d="M14 2H76A12 12 0 0 1 88 14V271A12 12 0 0 1 76 283H14A12 12 0 0 1 2 271V14A12 12 0 0 1 14 2Z"
+            />
+            <path
+              d="M191 283.667H252.5A12 12 0 0 0 264.5 271.667V61.167C264.5 43 263.487 30 250 15.67C246.923-4.6 179-4.6 179 3.67V271.667A12 12 0 0 0 191 283.667Z"
+            />
+            <path
+              d="M352 283.667H413.5A12 12 0 0 0 425.5 271.667V61.167C425.5 43 424.487 30 411 15.67C407.923-4.6 340-4.6 340 3.67V271.667A12 12 0 0 0 352 283.667Z"
+            />
+          </g>
         </svg>
-      </section>
-      <section class="section about-body">
-        <div class="section__rule reveal"></div>
-        <div class="about-body__grid">
-          <p class="reveal">
-            MAG Pictures is a 3D animation and VFX studio built for cinematic
-            storytelling — film, games, and brand worlds that feel lived-in.
+
+        <div class="about-split__copy">
+          <p class="label reveal">About Us</p>
+          <h1 class="display display--xl reveal">Different backgrounds. Same vision.</h1>
+          <p class="lede reveal">
+            Artists, technical directors, and story people — one obsession: images
+            that move people. Minimal noise. Maximum craft.
           </p>
-          <p class="reveal">
-            We work lean and deliberate: strong direction, precise craft, and
-            pipelines that stay invisible so the image can speak.
-          </p>
+          <div class="about-body__grid">
+            <p class="reveal">
+              MAG Pictures is a 3D animation and VFX studio built for cinematic
+              storytelling — film, games, and brand worlds that feel lived-in.
+            </p>
+            <p class="reveal">
+              We work lean and deliberate: strong direction, precise craft, and
+              pipelines that stay invisible so the image can speak.
+            </p>
+          </div>
+          <a class="text-link reveal" href="/team/" data-cursor="link">
+            Meet the team
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
         </div>
-        <a class="text-link reveal" href="/team/" data-cursor="link">
-          Meet the team
-          <span class="arrow" aria-hidden="true">→</span>
-        </a>
       </section>
     </main>
     <footer class="site-footer" id="site-footer"></footer>
