@@ -7,7 +7,7 @@ function path(slug = '') {
 }
 
 const links = [
-  { slug: 'about', label: 'About' },
+  { slug: 'about', label: 'About Us' },
   { slug: 'work', label: 'Work' },
   { slug: 'expertise', label: 'Expertise' },
   { slug: 'team', label: 'Team' },

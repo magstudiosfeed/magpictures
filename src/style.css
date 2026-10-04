@@ -505,6 +505,27 @@ p {
   object-fit: cover;
 }
 
+.about-boolean-wrap {
+  padding-top: 0;
+}
+
+.about-boolean {
+  display: block;
+  width: min(100%, 920px);
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.about-boolean image {
+  filter: grayscale(0.2) contrast(1.06);
+  transition: filter 0.6s var(--ease);
+}
+
+.about-boolean:hover image {
+  filter: grayscale(0) contrast(1.08);
+}
+
 .about-body__grid {
   display: grid;
   gap: 1.5rem;
