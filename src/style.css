@@ -470,6 +470,20 @@ body[data-page="work"] .site-header {
   font-size: clamp(2.4rem, 6.5vw, 5.2rem);
 }
 
+.page-title {
+  display: grid;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 7vw, 5.6rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.page-title__mark {
+  color: var(--accent);
+}
+
 .page-hero {
   padding: clamp(7rem, 14vw, 10rem) var(--pad) clamp(2rem, 4vw, 3rem);
   max-width: var(--max);
@@ -569,11 +583,10 @@ body[data-page="work"] .site-header {
   align-items: start;
 }
 
-.about-split .display {
+.about-split .page-title {
   max-width: 100%;
-  font-size: clamp(2.1rem, 4.4vw, 4rem);
+  font-size: clamp(2.2rem, 4.6vw, 4.2rem);
   line-height: 0.95;
-  overflow-wrap: normal;
 }
 
 .about-split .lede {
@@ -980,19 +993,9 @@ body[data-page="work"] .site-header {
   margin-bottom: clamp(2.5rem, 6vw, 4rem);
 }
 
-.who__title {
-  display: grid;
-  font-family: var(--font-display);
+.who .page-title {
   font-size: clamp(3.2rem, 10vw, 7rem);
-  font-weight: 400;
-  letter-spacing: 0.02em;
   line-height: 0.88;
-  text-transform: uppercase;
-}
-
-.who__title-outline {
-  color: transparent;
-  -webkit-text-stroke: 1.5px #fff;
 }
 
 .who__grid {
