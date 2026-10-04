@@ -5,7 +5,8 @@ import { fileURLToPath } from 'url'
 const root = fileURLToPath(new URL('.', import.meta.url))
 
 export default defineConfig({
-  base: '/magpictures/',
+  // Relative base works for both github.io/magpictures AND custom domain root
+  base: './',
   server: {
     port: 5173,
     open: true,
