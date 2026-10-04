@@ -671,6 +671,48 @@ p {
   transform: translateY(0);
 }
 
+.poster--soon {
+  grid-column: 1 / -1;
+}
+
+.poster--soon > img {
+  aspect-ratio: 21 / 9;
+  filter: brightness(0.72) saturate(0.95);
+}
+
+.poster--soon:hover > img {
+  transform: scale(1.03);
+  filter: brightness(0.78) saturate(1.02);
+}
+
+.poster__soon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: end start;
+  gap: 0.75rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  background: linear-gradient(120deg, rgba(0, 0, 0, 0.55) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.poster__soon-label {
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.poster__title {
+  width: min(42vw, 320px);
+  height: auto;
+  aspect-ratio: auto !important;
+  object-fit: contain;
+  transform: none !important;
+  filter: none !important;
+}
+
 .about__grid {
   display: grid;
   gap: 1.5rem;
