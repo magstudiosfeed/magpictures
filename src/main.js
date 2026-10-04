@@ -125,81 +125,15 @@ function initHero() {
   });
 }
 
-function initChroma() {
-  if (reduceMotion || !finePointer) {
-    document.querySelectorAll(".rgb-split").forEach((el) => el.classList.remove("rgb-split"));
-    return;
-  }
+function initWorkMore() {
+  const grid = document.querySelector("[data-poster-grid]");
+  const btn = document.querySelector("[data-work-more]");
+  if (!grid || !btn) return;
 
-  const offR = document.querySelector('#rgb-split feOffset[result="offR"]');
-  const offB = document.querySelector('#rgb-split feOffset[result="offB"]');
-  if (!offR || !offB) return;
-
-  // Base lens fringe on content edges; mouse only nudges strength (no spotlight).
-  window.addEventListener(
-    "pointermove",
-    (event) => {
-      const ax = event.clientX / window.innerWidth * 2 - 1;
-      const ay = event.clientY / window.innerHeight * 2 - 1;
-      const dx = (1.1 + Math.abs(ax) * 1.4).toFixed(2);
-      const dy = (ay * 0.55).toFixed(2);
-      offR.setAttribute("dx", String(-dx));
-      offR.setAttribute("dy", String(-dy));
-      offB.setAttribute("dx", dx);
-      offB.setAttribute("dy", dy);
-    },
-    { passive: true }
-  );
-}
-
-function initSoonSlider() {
-  const root = document.querySelector("[data-soon-slider]");
-  if (!root) return;
-
-  const track = root.querySelector(".soon-slider__track");
-  const slides = [...root.querySelectorAll(".soon-slider__slide")];
-  const dotsWrap = root.querySelector("[data-soon-dots]");
-  const prev = root.querySelector("[data-soon-prev]");
-  const next = root.querySelector("[data-soon-next]");
-  if (!track || slides.length < 2) return;
-
-  let index = 0;
-  let timer;
-
-  slides.forEach((_, i) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.setAttribute("aria-label", `Slide ${i + 1}`);
-    btn.addEventListener("click", () => go(i));
-    dotsWrap?.appendChild(btn);
+  btn.addEventListener("click", () => {
+    grid.classList.add("is-open");
+    btn.hidden = true;
   });
-
-  const dots = [...(dotsWrap?.querySelectorAll("button") || [])];
-
-  function render() {
-    track.style.transform = `translate3d(${-index * 100}%, 0, 0)`;
-    slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
-    dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
-  }
-
-  function go(nextIndex) {
-    index = (nextIndex + slides.length) % slides.length;
-    render();
-    restart();
-  }
-
-  function restart() {
-    clearInterval(timer);
-    timer = setInterval(() => go(index + 1), 5200);
-  }
-
-  prev?.addEventListener("click", () => go(index - 1));
-  next?.addEventListener("click", () => go(index + 1));
-  root.addEventListener("pointerenter", () => clearInterval(timer));
-  root.addEventListener("pointerleave", restart);
-
-  render();
-  restart();
 }
 
 function formatTime(seconds) {
@@ -512,6 +446,5 @@ initReveals();
 initServiceList();
 initCursor();
 initMobileNav();
-initChroma();
-initSoonSlider();
+initWorkMore();
 initReelPlayer();
