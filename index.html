@@ -117,7 +117,15 @@
         <img class="player__marks" src="/images/mark-3.svg" alt="" width="72" height="40" />
       </div>
       <div class="player__stage">
-        <video class="player__video" playsinline></video>
+        <div class="player__preroll" data-preroll aria-hidden="true">
+          <img src="/images/mark-3.svg" alt="" width="120" height="72" />
+        </div>
+        <video
+          class="player__video"
+          playsinline
+          disableRemotePlayback
+          controlslist="nodownload noplaybackrate noremoteplayback"
+        ></video>
       </div>
       <div class="player__bar">
         <button class="player__play" type="button" data-play aria-label="Play or pause"></button>

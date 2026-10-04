@@ -159,6 +159,8 @@ function initReelPlayer() {
   if (!trigger || !bg || !overlay) return;
 
   const player = overlay.querySelector(".player__video");
+  const preroll = overlay.querySelector("[data-preroll]");
+  const mark = preroll?.querySelector("img");
   const playBtn = overlay.querySelector("[data-play]");
   const muteBtn = overlay.querySelector("[data-mute]");
   const seek = overlay.querySelector("[data-seek]");
@@ -169,6 +171,9 @@ function initReelPlayer() {
   let opening = false;
 
   player.src = "/video/MAG_REEL_v01.mp4";
+  player.disableRemotePlayback = true;
+  player.removeAttribute("controls");
+  player.controls = false;
 
   const setPlaying = (playing) => {
     overlay.classList.toggle("is-playing", playing);
@@ -180,6 +185,59 @@ function initReelPlayer() {
     muteBtn.setAttribute("aria-label", muted ? "Unmute" : "Mute");
   };
 
+  const runPreroll = () =>
+    new Promise((resolve) => {
+      if (!preroll || !mark || reduceMotion) {
+        resolve();
+        return;
+      }
+
+      overlay.classList.add("is-preroll");
+      gsap.set(preroll, { opacity: 1, visibility: "visible" });
+      gsap.set(player, { opacity: 0 });
+      gsap.set(".player__bar", { opacity: 0 });
+      gsap.set(mark, { scale: 0.72, opacity: 0, rotate: -8 });
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          overlay.classList.remove("is-preroll");
+          resolve();
+        },
+      });
+
+      tl.to(mark, {
+        opacity: 1,
+        scale: 1,
+        rotate: 0,
+        duration: 0.55,
+        ease: "power3.out",
+      })
+        .to(mark, {
+          scale: 1.08,
+          duration: 0.35,
+          ease: "power1.inOut",
+        })
+        .to(mark, {
+          opacity: 0,
+          scale: 1.35,
+          duration: 0.45,
+          ease: "power2.in",
+        })
+        .to(
+          preroll,
+          {
+            opacity: 0,
+            duration: 0.25,
+            onComplete: () => {
+              gsap.set(preroll, { visibility: "hidden" });
+            },
+          },
+          "-=0.1"
+        )
+        .to(player, { opacity: 1, duration: 0.35 }, "-=0.15")
+        .to(".player__bar", { opacity: 1, duration: 0.3 }, "<");
+    });
+
   const zoomFromHero = () => {
     gsap.set(".player__bar, .player__top", { opacity: 0 });
     gsap.fromTo(
@@ -188,14 +246,14 @@ function initReelPlayer() {
       {
         scale: 1,
         opacity: 1,
-        duration: reduceMotion ? 0 : 0.75,
+        duration: reduceMotion ? 0 : 0.55,
         ease: "power3.out",
       }
     );
-    gsap.to(".player__bar, .player__top", {
+    gsap.to(".player__top", {
       opacity: 1,
-      duration: 0.35,
-      delay: reduceMotion ? 0 : 0.35,
+      duration: 0.3,
+      delay: reduceMotion ? 0 : 0.2,
     });
   };
 
@@ -204,12 +262,18 @@ function initReelPlayer() {
     opening = true;
     overlay.hidden = false;
     document.body.classList.add("player-open");
-    player.currentTime = bg.currentTime || 0;
+    bg.pause();
+    player.pause();
+    player.currentTime = 0;
     player.muted = false;
     player.volume = 1;
     setMuted(false);
-    bg.pause();
+    setPlaying(false);
+    overlay.style.setProperty("--played", "0%");
+    seek.value = "0";
+    timeEl.textContent = "0:00";
     zoomFromHero();
+    await runPreroll();
     try {
       await player.play();
     } catch {
@@ -221,9 +285,12 @@ function initReelPlayer() {
   const close = () => {
     const finish = () => {
       overlay.hidden = true;
+      overlay.classList.remove("is-preroll");
       document.body.classList.remove("player-open");
       gsap.set(overlay, { clearProps: "transform,scale,opacity" });
-      bg.currentTime = player.currentTime || 0;
+      gsap.set(player, { clearProps: "opacity" });
+      gsap.set(preroll, { clearProps: "opacity,visibility" });
+      bg.currentTime = 0;
       bg.muted = true;
       bg.play().catch(() => {});
     };
@@ -233,7 +300,7 @@ function initReelPlayer() {
       finish();
       return;
     }
-    gsap.to(".player__bar, .player__top", { opacity: 0, duration: 0.2 });
+    gsap.to(".player__bar, .player__top, .player__preroll", { opacity: 0, duration: 0.2 });
     gsap.to(overlay, {
       scale: 1.04,
       opacity: 0,
