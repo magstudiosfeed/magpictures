@@ -181,25 +181,21 @@ function initReelPlayer() {
   };
 
   const zoomFromHero = () => {
-    const rect = trigger.getBoundingClientRect();
-    const sx = rect.width / window.innerWidth;
-    const sy = rect.height / window.innerHeight;
-    const x = rect.left + rect.width / 2 - window.innerWidth / 2;
-    const y = rect.top + rect.height / 2 - window.innerHeight / 2;
-    gsap.set(overlay, { scaleX: sx, scaleY: sy, x, y, opacity: 1 });
-    gsap.set(".player__bar, .player__back", { opacity: 0 });
-    gsap.to(overlay, {
-      scaleX: 1,
-      scaleY: 1,
-      x: 0,
-      y: 0,
-      duration: reduceMotion ? 0 : 0.85,
-      ease: "power3.inOut",
-    });
-    gsap.to(".player__bar, .player__back", {
+    gsap.set(".player__bar, .player__top", { opacity: 0 });
+    gsap.fromTo(
+      overlay,
+      { scale: 0.92, opacity: 0.35 },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: reduceMotion ? 0 : 0.75,
+        ease: "power3.out",
+      }
+    );
+    gsap.to(".player__bar, .player__top", {
       opacity: 1,
-      duration: 0.4,
-      delay: reduceMotion ? 0 : 0.45,
+      duration: 0.35,
+      delay: reduceMotion ? 0 : 0.35,
     });
   };
 
@@ -226,7 +222,7 @@ function initReelPlayer() {
     const finish = () => {
       overlay.hidden = true;
       document.body.classList.remove("player-open");
-      gsap.set(overlay, { clearProps: "transform,x,y,scaleX,scaleY,opacity" });
+      gsap.set(overlay, { clearProps: "transform,scale,opacity" });
       bg.currentTime = player.currentTime || 0;
       bg.muted = true;
       bg.play().catch(() => {});
@@ -237,11 +233,11 @@ function initReelPlayer() {
       finish();
       return;
     }
-    gsap.to(".player__bar, .player__back", { opacity: 0, duration: 0.2 });
+    gsap.to(".player__bar, .player__top", { opacity: 0, duration: 0.2 });
     gsap.to(overlay, {
-      scale: 1.06,
+      scale: 1.04,
       opacity: 0,
-      duration: 0.4,
+      duration: 0.35,
       ease: "power2.in",
       onComplete: finish,
     });
@@ -276,6 +272,7 @@ function initReelPlayer() {
   player.addEventListener("timeupdate", () => {
     if (!player.duration) return;
     seek.value = String(Math.round((player.currentTime / player.duration) * 1000));
+    overlay.style.setProperty("--played", `${(player.currentTime / player.duration) * 100}%`);
     timeEl.textContent = formatTime(player.currentTime);
     durEl.textContent = formatTime(player.duration);
   });
@@ -283,6 +280,7 @@ function initReelPlayer() {
   seek.addEventListener("input", () => {
     if (!player.duration) return;
     player.currentTime = (Number(seek.value) / 1000) * player.duration;
+    overlay.style.setProperty("--played", `${(Number(seek.value) / 1000) * 100}%`);
   });
 
   fullBtn.addEventListener("click", async () => {
