@@ -188,7 +188,7 @@ function initReelPlayer() {
   const backBtn = overlay.querySelector("[data-close]");
   let opening = false;
 
-  player.src = "/video/MAG_REEL_v01.mp4";
+  player.src = "/video/YASUO_REEL.mp4";
   player.disableRemotePlayback = true;
   player.removeAttribute("controls");
   player.controls = false;
