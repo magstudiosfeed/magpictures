@@ -125,6 +125,31 @@ function initHero() {
   });
 }
 
+function initParallaxBands() {
+  if (reduceMotion) return;
+
+  document.querySelectorAll("[data-parallax-band]").forEach((band) => {
+    const img = band.querySelector("img");
+    if (!img) return;
+
+    gsap.fromTo(
+      img,
+      { yPercent: -12, scale: 1.14 },
+      {
+        yPercent: 12,
+        scale: 1.02,
+        ease: "none",
+        scrollTrigger: {
+          trigger: band,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.6,
+        },
+      }
+    );
+  });
+}
+
 function initWorkMore() {
   const grid = document.querySelector("[data-poster-grid]");
   const btn = document.querySelector("[data-work-more]");
@@ -442,6 +467,7 @@ function initMobileNav() {
 
 initSmoothScroll();
 initHero();
+initParallaxBands();
 initReveals();
 initServiceList();
 initCursor();
