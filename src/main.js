@@ -126,21 +126,87 @@ function initHero() {
 }
 
 function initChroma() {
-  if (reduceMotion || !finePointer) return;
+  if (reduceMotion || !finePointer) {
+    document.querySelectorAll(".rgb-split").forEach((el) => el.classList.remove("rgb-split"));
+    return;
+  }
   const root = document.documentElement;
+  const offR = document.querySelector('#rgb-split feOffset[result="offR"]');
+  const offB = document.querySelector('#rgb-split feOffset[result="offB"]');
 
   window.addEventListener(
     "pointermove",
     (event) => {
       const x = event.clientX / window.innerWidth;
       const y = event.clientY / window.innerHeight;
+      const ax = x * 2 - 1;
+      const ay = y * 2 - 1;
       root.style.setProperty("--cx", `${(x * 100).toFixed(2)}%`);
       root.style.setProperty("--cy", `${(y * 100).toFixed(2)}%`);
-      root.style.setProperty("--ab-x", (x * 2 - 1).toFixed(3));
-      root.style.setProperty("--ab-y", (y * 2 - 1).toFixed(3));
+      root.style.setProperty("--ab-x", ax.toFixed(3));
+      root.style.setProperty("--ab-y", ay.toFixed(3));
+
+      if (offR && offB) {
+        const dx = (ax * 2.4).toFixed(2);
+        const dy = (ay * 1.4).toFixed(2);
+        offR.setAttribute("dx", String(-dx));
+        offR.setAttribute("dy", String(-dy));
+        offB.setAttribute("dx", String(dx));
+        offB.setAttribute("dy", String(dy));
+      }
     },
     { passive: true }
   );
+}
+
+function initSoonSlider() {
+  const root = document.querySelector("[data-soon-slider]");
+  if (!root) return;
+
+  const track = root.querySelector(".soon-slider__track");
+  const slides = [...root.querySelectorAll(".soon-slider__slide")];
+  const dotsWrap = root.querySelector("[data-soon-dots]");
+  const prev = root.querySelector("[data-soon-prev]");
+  const next = root.querySelector("[data-soon-next]");
+  if (!track || slides.length < 2) return;
+
+  let index = 0;
+  let timer;
+
+  slides.forEach((_, i) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.setAttribute("aria-label", `Slide ${i + 1}`);
+    btn.addEventListener("click", () => go(i));
+    dotsWrap?.appendChild(btn);
+  });
+
+  const dots = [...(dotsWrap?.querySelectorAll("button") || [])];
+
+  function render() {
+    track.style.transform = `translate3d(${-index * 100}%, 0, 0)`;
+    slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
+    dots.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+  }
+
+  function go(nextIndex) {
+    index = (nextIndex + slides.length) % slides.length;
+    render();
+    restart();
+  }
+
+  function restart() {
+    clearInterval(timer);
+    timer = setInterval(() => go(index + 1), 5200);
+  }
+
+  prev?.addEventListener("click", () => go(index - 1));
+  next?.addEventListener("click", () => go(index + 1));
+  root.addEventListener("pointerenter", () => clearInterval(timer));
+  root.addEventListener("pointerleave", restart);
+
+  render();
+  restart();
 }
 
 function formatTime(seconds) {
@@ -444,4 +510,5 @@ initServiceList();
 initCursor();
 initMobileNav();
 initChroma();
+initSoonSlider();
 initReelPlayer();

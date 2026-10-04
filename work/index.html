@@ -30,17 +30,44 @@
 
       <section class="section">
         <div class="poster-grid">
-          <figure class="poster poster--soon reveal" data-cursor="media">
-            <img src="/images/posters/black-phoenix.jpg" alt="Black Phoenix" />
-            <div class="poster__soon">
-              <p class="poster__soon-label">Coming soon</p>
-              <img
-                class="poster__title"
-                src="/images/posters/black-phoenix-title.png"
-                alt="Black Phoenix"
-              />
+          <div class="poster poster--soon reveal" data-cursor="media">
+            <div class="soon-slider" data-soon-slider>
+              <div class="soon-slider__viewport">
+                <div class="soon-slider__track">
+                  <figure class="soon-slider__slide is-active">
+                    <img src="/images/posters/black-phoenix.jpg" alt="Black Phoenix" />
+                    <div class="poster__soon">
+                      <p class="poster__soon-label">Coming soon</p>
+                      <img
+                        class="poster__title"
+                        src="/images/posters/black-phoenix-title.png"
+                        alt="Black Phoenix"
+                      />
+                    </div>
+                  </figure>
+                  <figure class="soon-slider__slide">
+                    <img src="/images/posters/coming-soon-01.jpg" alt="Coming soon project" />
+                    <div class="poster__soon">
+                      <p class="poster__soon-label">Coming soon</p>
+                    </div>
+                  </figure>
+                  <figure class="soon-slider__slide">
+                    <img src="/images/posters/coming-soon-02.jpg" alt="Coming soon project" />
+                    <div class="poster__soon">
+                      <p class="poster__soon-label">Coming soon</p>
+                    </div>
+                  </figure>
+                </div>
+              </div>
+              <button class="soon-slider__nav soon-slider__nav--prev" type="button" data-soon-prev aria-label="Previous">
+                ←
+              </button>
+              <button class="soon-slider__nav soon-slider__nav--next" type="button" data-soon-next aria-label="Next">
+                →
+              </button>
+              <div class="soon-slider__dots" data-soon-dots></div>
             </div>
-          </figure>
+          </div>
           <figure class="poster reveal" data-cursor="media">
             <img src="/images/posters/lol.png" alt="League of Legends" />
             <figcaption>League of Legends</figcaption>
@@ -79,13 +106,27 @@
       <section class="section clients">
         <div class="section__rule reveal"></div>
         <p class="label reveal">Selected clients</p>
-        <ul class="logo-row reveal" aria-label="Client logos">
-          <li>Netflix</li>
-          <li>Sony</li>
-          <li>Pixar</li>
-          <li>Ubisoft</li>
-          <li>Adobe</li>
-          <li>HBO</li>
+        <ul class="client-logos reveal" aria-label="Client logos">
+          <li class="client-logo client-logo--netflix">Netflix</li>
+          <li class="client-logo client-logo--disney">Disney</li>
+          <li class="client-logo client-logo--hulu">hulu</li>
+          <li class="client-logo client-logo--gunzilla">Gunzilla</li>
+          <li class="client-logo client-logo--paramount">Paramount</li>
+        </ul>
+      </section>
+
+      <section class="section collaborators">
+        <div class="section__rule reveal"></div>
+        <p class="label reveal">Collaborators</p>
+        <ul class="collab-list reveal" aria-label="Collaborators">
+          <li>Cubica VFX</li>
+          <li>Sauvage tv</li>
+          <li>UPP</li>
+          <li>MPC</li>
+          <li>MRX</li>
+          <li>Skydance Interactive</li>
+          <li>El Guiri</li>
+          <li>Untold Studios</li>
         </ul>
       </section>
     </main>

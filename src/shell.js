@@ -32,7 +32,7 @@ export function mountShell() {
   if (header) {
     header.innerHTML = `
       <a class="brand" href="${path()}" aria-label="MAG Pictures home">
-        <img class="brand__logo" src="${base}images/logo-clear.png" alt="MAG Pictures" width="120" height="120" />
+        <img class="brand__logo" src="${base}images/logo-mag.png" alt="MAG Pictures" width="160" height="72" />
       </a>
       <nav class="nav" aria-label="Primary">${navLinks(page)}</nav>
       <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
@@ -64,6 +64,39 @@ export function mountShell() {
     `
   }
 
+  if (!document.getElementById('rgb-split')) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+    svg.setAttribute('aria-hidden', 'true')
+    svg.setAttribute('width', '0')
+    svg.setAttribute('height', '0')
+    svg.style.position = 'absolute'
+    svg.innerHTML = `
+      <filter id="rgb-split" color-interpolation-filters="sRGB" x="-5%" y="-5%" width="110%" height="110%">
+        <feOffset in="SourceGraphic" dx="-2" dy="0" result="offR"/>
+        <feColorMatrix in="offR" type="matrix" values="
+          1 0 0 0 0
+          0 0 0 0 0
+          0 0 0 0 0
+          0 0 0 1 0" result="red"/>
+        <feOffset in="SourceGraphic" dx="0" dy="0" result="offG"/>
+        <feColorMatrix in="offG" type="matrix" values="
+          0 0 0 0 0
+          0 1 0 0 0
+          0 0 0 0 0
+          0 0 0 1 0" result="green"/>
+        <feOffset in="SourceGraphic" dx="2" dy="0" result="offB"/>
+        <feColorMatrix in="offB" type="matrix" values="
+          0 0 0 0 0
+          0 0 0 0 0
+          0 0 1 0 0
+          0 0 0 1 0" result="blue"/>
+        <feBlend in="red" in2="green" mode="screen" result="rg"/>
+        <feBlend in="rg" in2="blue" mode="screen"/>
+      </filter>
+    `
+    document.body.prepend(svg)
+  }
+
   if (!document.querySelector('.chroma')) {
     const chroma = document.createElement('div')
     chroma.className = 'chroma'
@@ -71,4 +104,8 @@ export function mountShell() {
     chroma.innerHTML = '<div class="chroma__r"></div><div class="chroma__g"></div><div class="chroma__b"></div>'
     document.body.appendChild(chroma)
   }
+
+  document.querySelectorAll('main, .site-header, .site-footer').forEach((el) => {
+    el.classList.add('rgb-split')
+  })
 }
