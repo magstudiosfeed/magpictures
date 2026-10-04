@@ -68,9 +68,15 @@ export function mountShell() {
           </a>`
 
     footer.innerHTML = `
-      <a class="site-footer__brand" href="${path()}" aria-label="MAG Pictures home">
-        <img src="${base}images/mark-3.svg" alt="" width="72" height="44" />
-      </a>
+      <div class="site-footer__brand-block">
+        <a class="site-footer__brand" href="${path()}" aria-label="MAG Pictures home">
+          <img src="${base}images/mark-3.svg" alt="" width="72" height="44" />
+        </a>
+        <p class="site-footer__place">
+          <span>Animation studio</span>
+          <span>Based in Barcelona, Spain</span>
+        </p>
+      </div>
       <div class="site-footer__meta">
         <p class="site-footer__copy">© 2026 MAG Pictures</p>
         ${contactCta}

@@ -1287,11 +1287,28 @@ body[data-page="work"] .site-header {
   border-top: 1px solid var(--line);
 }
 
+.site-footer__brand-block {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .site-footer__brand img {
   display: block;
   width: 72px;
   height: auto;
   object-fit: contain;
+}
+
+.site-footer__place {
+  margin: 0;
+  display: grid;
+  gap: 0.15rem;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .site-footer__meta {
