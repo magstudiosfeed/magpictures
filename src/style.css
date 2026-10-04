@@ -499,10 +499,41 @@ p {
   background: #111;
 }
 
-.expertise__visual img {
+.expertise-collage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: 0.28rem;
+}
+
+.expertise-collage__tile {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.expertise-collage__tile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: grayscale(0.35) brightness(0.72);
+  transition: filter 0.45s var(--ease), transform 0.7s var(--ease);
+}
+
+.expertise-collage__tile figcaption {
+  position: absolute;
+  left: 0.45rem;
+  bottom: 0.35rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.expertise-collage__tile.is-active img,
+.expertise-collage__tile:hover img {
+  filter: grayscale(0) brightness(1);
+  transform: scale(1.06);
 }
 
 .about-boolean-wrap {

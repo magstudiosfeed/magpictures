@@ -421,16 +421,26 @@ function initReelPlayer() {
 function initServiceList() {
   const items = [...document.querySelectorAll(".service-list li")];
   if (!items.length) return;
+  const tiles = [...document.querySelectorAll(".expertise-collage [data-step]")];
 
   const setActive = (active) => {
     items.forEach((item) => item.classList.toggle("is-active", item === active));
+    const step = active?.dataset.step;
+    tiles.forEach((tile) => tile.classList.toggle("is-active", tile.dataset.step === step));
   };
 
-  setActive(items[6] || items[0]);
+  setActive(items.find((item) => item.dataset.step === "7") || items[0]);
 
   items.forEach((item) => {
     item.addEventListener("mouseenter", () => setActive(item));
     item.addEventListener("focus", () => setActive(item));
+  });
+
+  tiles.forEach((tile) => {
+    tile.addEventListener("mouseenter", () => {
+      const match = items.find((item) => item.dataset.step === tile.dataset.step);
+      if (match) setActive(match);
+    });
   });
 }
 
