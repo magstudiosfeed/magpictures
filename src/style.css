@@ -1284,39 +1284,14 @@ p {
   overflow: hidden;
 }
 
-.lens__vignette,
-.lens__ca-r,
-.lens__ca-b {
+.lens__vignette {
   position: absolute;
   inset: 0;
-}
-
-.lens__vignette {
   background: radial-gradient(
-    ellipse 62% 58% at 50% 46%,
-    transparent 32%,
-    rgba(0, 0, 0, 0.42) 78%,
-    rgba(0, 0, 0, 0.78) 100%
+    ellipse 78% 72% at 50% 48%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.22) 100%
   );
-}
-
-.lens__ca-r,
-.lens__ca-b {
-  mix-blend-mode: screen;
-}
-
-.lens__ca-r {
-  background:
-    linear-gradient(90deg, rgba(255, 36, 70, 0.55) 0%, transparent 11%),
-    linear-gradient(180deg, rgba(255, 48, 80, 0.32) 0%, transparent 10%);
-  transform: translate3d(-4px, -2px, 0);
-}
-
-.lens__ca-b {
-  background:
-    linear-gradient(270deg, rgba(0, 150, 255, 0.55) 0%, transparent 11%),
-    linear-gradient(0deg, rgba(40, 170, 255, 0.32) 0%, transparent 10%);
-  transform: translate3d(4px, 2px, 0);
 }
 
 .reel {

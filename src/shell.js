@@ -97,13 +97,14 @@ export function mountShell() {
   }
 
   document.querySelector('.chroma')?.remove()
-  if (!document.querySelector('.lens')) {
-    const lens = document.createElement('div')
+  let lens = document.querySelector('.lens')
+  if (!lens) {
+    lens = document.createElement('div')
     lens.className = 'lens'
     lens.setAttribute('aria-hidden', 'true')
-    lens.innerHTML = '<div class="lens__vignette"></div><div class="lens__ca-r"></div><div class="lens__ca-b"></div>'
     document.body.appendChild(lens)
   }
+  lens.innerHTML = '<div class="lens__vignette"></div>'
 
   document.querySelectorAll('main, .site-header, .site-footer').forEach((el) => {
     el.classList.add('rgb-split')
