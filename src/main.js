@@ -130,30 +130,23 @@ function initChroma() {
     document.querySelectorAll(".rgb-split").forEach((el) => el.classList.remove("rgb-split"));
     return;
   }
-  const root = document.documentElement;
+
   const offR = document.querySelector('#rgb-split feOffset[result="offR"]');
   const offB = document.querySelector('#rgb-split feOffset[result="offB"]');
+  if (!offR || !offB) return;
 
+  // Base lens fringe on content edges; mouse only nudges strength (no spotlight).
   window.addEventListener(
     "pointermove",
     (event) => {
-      const x = event.clientX / window.innerWidth;
-      const y = event.clientY / window.innerHeight;
-      const ax = x * 2 - 1;
-      const ay = y * 2 - 1;
-      root.style.setProperty("--cx", `${(x * 100).toFixed(2)}%`);
-      root.style.setProperty("--cy", `${(y * 100).toFixed(2)}%`);
-      root.style.setProperty("--ab-x", ax.toFixed(3));
-      root.style.setProperty("--ab-y", ay.toFixed(3));
-
-      if (offR && offB) {
-        const dx = (ax * 2.4).toFixed(2);
-        const dy = (ay * 1.4).toFixed(2);
-        offR.setAttribute("dx", String(-dx));
-        offR.setAttribute("dy", String(-dy));
-        offB.setAttribute("dx", String(dx));
-        offB.setAttribute("dy", String(dy));
-      }
+      const ax = event.clientX / window.innerWidth * 2 - 1;
+      const ay = event.clientY / window.innerHeight * 2 - 1;
+      const dx = (1.1 + Math.abs(ax) * 1.4).toFixed(2);
+      const dy = (ay * 0.55).toFixed(2);
+      offR.setAttribute("dx", String(-dx));
+      offR.setAttribute("dy", String(-dy));
+      offB.setAttribute("dx", dx);
+      offB.setAttribute("dy", dy);
     },
     { passive: true }
   );

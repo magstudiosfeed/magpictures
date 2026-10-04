@@ -11,10 +11,6 @@
   --pad: clamp(1.25rem, 4vw, 4rem);
   --max: 1440px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --ab-x: 0;
-  --ab-y: 0;
-  --cx: 50%;
-  --cy: 50%;
 }
 
 *,
@@ -1229,9 +1225,12 @@ p {
   .hero__scroll span::before,
   .cursor,
   .noise,
-  .chroma,
   .ticker__track {
     display: none !important;
+  }
+
+  .rgb-split {
+    filter: none !important;
   }
 
   * {
@@ -1267,55 +1266,6 @@ p {
 .hero--reel .hero__content .text-link {
   opacity: 1;
   transform: none;
-}
-
-.chroma {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 95;
-  overflow: hidden;
-  mix-blend-mode: screen;
-  opacity: 0.35;
-}
-
-.chroma__r,
-.chroma__g,
-.chroma__b {
-  position: absolute;
-  inset: -8%;
-  will-change: transform, opacity;
-  background:
-    radial-gradient(
-      circle 55vmax at var(--cx) var(--cy),
-      currentColor 0%,
-      transparent 42%
-    ),
-    linear-gradient(
-      90deg,
-      currentColor 0%,
-      transparent 18%,
-      transparent 82%,
-      currentColor 100%
-    );
-}
-
-.chroma__r {
-  color: rgba(255, 0, 48, 0.55);
-  transform: translate3d(calc(var(--ab-x) * -7px), calc(var(--ab-y) * -4px), 0);
-  opacity: 0.85;
-}
-
-.chroma__g {
-  color: rgba(0, 255, 96, 0.22);
-  transform: translate3d(calc(var(--ab-x) * 1px), calc(var(--ab-y) * -1px), 0);
-  opacity: 0.55;
-}
-
-.chroma__b {
-  color: rgba(0, 140, 255, 0.55);
-  transform: translate3d(calc(var(--ab-x) * 7px), calc(var(--ab-y) * 4px), 0);
-  opacity: 0.85;
 }
 
 .rgb-split {
@@ -1441,10 +1391,13 @@ body.player-open {
   overflow: hidden;
 }
 
-body.player-open .site-header,
-body.player-open .chroma {
+body.player-open .site-header {
   opacity: 0;
   pointer-events: none;
+}
+
+body.player-open .rgb-split {
+  filter: none;
 }
 
 .player__top {

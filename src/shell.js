@@ -69,22 +69,21 @@ export function mountShell() {
     svg.setAttribute('aria-hidden', 'true')
     svg.setAttribute('width', '0')
     svg.setAttribute('height', '0')
-    svg.style.position = 'absolute'
+    svg.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden'
     svg.innerHTML = `
-      <filter id="rgb-split" color-interpolation-filters="sRGB" x="-5%" y="-5%" width="110%" height="110%">
-        <feOffset in="SourceGraphic" dx="-2" dy="0" result="offR"/>
+      <filter id="rgb-split" color-interpolation-filters="sRGB" x="-2%" y="-2%" width="104%" height="104%">
+        <feOffset in="SourceGraphic" dx="-1.2" dy="0" result="offR"/>
         <feColorMatrix in="offR" type="matrix" values="
           1 0 0 0 0
           0 0 0 0 0
           0 0 0 0 0
           0 0 0 1 0" result="red"/>
-        <feOffset in="SourceGraphic" dx="0" dy="0" result="offG"/>
-        <feColorMatrix in="offG" type="matrix" values="
+        <feColorMatrix in="SourceGraphic" type="matrix" values="
           0 0 0 0 0
           0 1 0 0 0
           0 0 0 0 0
           0 0 0 1 0" result="green"/>
-        <feOffset in="SourceGraphic" dx="2" dy="0" result="offB"/>
+        <feOffset in="SourceGraphic" dx="1.2" dy="0" result="offB"/>
         <feColorMatrix in="offB" type="matrix" values="
           0 0 0 0 0
           0 0 0 0 0
@@ -97,13 +96,7 @@ export function mountShell() {
     document.body.prepend(svg)
   }
 
-  if (!document.querySelector('.chroma')) {
-    const chroma = document.createElement('div')
-    chroma.className = 'chroma'
-    chroma.setAttribute('aria-hidden', 'true')
-    chroma.innerHTML = '<div class="chroma__r"></div><div class="chroma__g"></div><div class="chroma__b"></div>'
-    document.body.appendChild(chroma)
-  }
+  document.querySelector('.chroma')?.remove()
 
   document.querySelectorAll('main, .site-header, .site-footer').forEach((el) => {
     el.classList.add('rgb-split')
