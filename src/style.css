@@ -478,10 +478,13 @@ body[data-page="work"] .site-header {
   letter-spacing: 0.02em;
   line-height: 0.92;
   text-transform: uppercase;
+  outline: none;
 }
 
 .page-title__mark {
-  color: var(--accent);
+  color: transparent;
+  -webkit-text-stroke: 1.5px #fff;
+  paint-order: stroke fill;
 }
 
 .page-hero {
