@@ -247,19 +247,18 @@ body[data-page="work"] .site-header {
   height: 2.15rem;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 0;
   color: #fff;
-  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+  transition: color 0.3s var(--ease);
 }
 
 .social:hover {
   color: var(--accent);
-  border-color: var(--accent);
 }
 
 .social svg {
-  width: 0.92rem;
-  height: 0.92rem;
+  width: 1.2rem;
+  height: 1.2rem;
   fill: currentColor;
 }
 
@@ -442,6 +441,18 @@ body[data-page="work"] .site-header {
   margin: 0 auto;
 }
 
+.section.clients {
+  padding-bottom: 1.25rem;
+}
+
+.section.collaborators {
+  padding-top: 1.25rem;
+}
+
+.section.collaborators .section__rule {
+  margin-bottom: 1.5rem;
+}
+
 .section__rule {
   height: 1px;
   margin-bottom: clamp(2rem, 5vw, 3.5rem);
@@ -471,12 +482,14 @@ body[data-page="work"] .site-header {
 }
 
 .page-title {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 7vw, 5.6rem);
   font-weight: 400;
   letter-spacing: 0.02em;
-  line-height: 0.92;
+  line-height: 0.82;
   text-transform: uppercase;
   outline: none;
 }
@@ -1475,7 +1488,7 @@ body[data-page="work"] .site-header {
 }
 
 .home-manifesto {
-  padding: clamp(5rem, 12vw, 8rem) var(--pad) 3rem;
+  padding: clamp(5rem, 12vw, 8rem) var(--pad) clamp(6rem, 14vw, 10rem);
   max-width: 1100px;
   margin: 0 auto;
 }
