@@ -41,8 +41,8 @@ export function mountShell() {
 
   if (footer) {
     footer.innerHTML = `
-      <a class="site-footer__brand" href="${base}">
-        <img src="${base}images/logo-clear.png" alt="MAG Pictures" width="160" height="160" />
+      <a class="site-footer__brand" href="${base}" aria-label="MAG Pictures home">
+        <img src="${base}images/mark-3.svg" alt="" width="72" height="44" />
       </a>
       <div class="site-footer__meta">
         <p class="site-footer__copy">© 2026 MAG Pictures</p>

@@ -1,17 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 40" fill="none">
-  <!-- 01 sharp -->
-  <g>
-    <rect x="2" y="4" width="12" height="24" fill="#ffffff"/>
-    <rect x="6" y="8" width="12" height="24" stroke="#ffffff" stroke-width="1.25" fill="none"/>
-  </g>
-  <!-- 02 rounded -->
-  <g>
-    <path d="M26 4h8a6 6 0 0 1 6 6v18H26V4Z" fill="#ffffff"/>
-    <path d="M30 8h8a6 6 0 0 1 6 6v18H30V8Z" stroke="#ffffff" stroke-width="1.25" fill="none"/>
-  </g>
-  <!-- 03 rounded -->
-  <g>
-    <path d="M50 4h8a6 6 0 0 1 6 6v18H50V4Z" fill="#ffffff"/>
-    <path d="M54 8h8a6 6 0 0 1 6 6v18H54V8Z" stroke="#ffffff" stroke-width="1.25" fill="none"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Square canvas so browsers don't squash the 3 marks -->
+  <g transform="translate(4 14)">
+    <rect x="2" y="2" width="12" height="28" fill="#fff"/>
+    <rect x="6" y="6" width="12" height="28" stroke="#fff" stroke-width="1.4" fill="none"/>
+
+    <path d="M24 2h8a7 7 0 0 1 7 7v21H24V2Z" fill="#fff"/>
+    <path d="M28 6h8a7 7 0 0 1 7 7v21H28V6Z" stroke="#fff" stroke-width="1.4" fill="none"/>
+
+    <path d="M44 2h8a7 7 0 0 1 7 7v21H44V2Z" fill="#fff"/>
+    <path d="M48 6h8a7 7 0 0 1 7 7v21H48V6Z" stroke="#fff" stroke-width="1.4" fill="none"/>
   </g>
 </svg>

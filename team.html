@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Team — MAG PICTURES</title>
-    <meta name="description" content="Meet the MAG Pictures team." />
+    <meta name="description" content="Meet MAG Pictures — Marc, Andreu, and Gabriel." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,38 +24,97 @@
     <div class="mobile-nav" id="mobile-nav" hidden></div>
 
     <main>
-      <section class="page-hero page-hero--row">
-        <div>
-          <p class="label reveal">The team</p>
-          <h1 class="display display--xl reveal">Different backgrounds. Same vision.</h1>
+      <section class="who">
+        <div class="who__head reveal">
+          <img class="who__marks" src="/images/mark-3.svg" alt="" width="72" height="44" />
+          <h1 class="who__title">
+            <span>Who are</span>
+            <span class="who__title-outline">we?</span>
+          </h1>
         </div>
-        <a class="text-link reveal" href="contact.html" data-cursor="link">
-          Get in touch
-          <span class="arrow" aria-hidden="true">→</span>
-        </a>
+
+        <div class="who__grid">
+          <article class="who-card reveal" data-cursor="media">
+            <div class="who-card__frame">
+              <img src="/images/team/vfx.jpg" alt="Marc Mesa" />
+              <img class="who-card__mark" src="/images/mark-3.svg" alt="" />
+              <div class="who-card__bar">
+                <h2>Marc<br />Mesa</h2>
+                <span>Co-founder</span>
+              </div>
+            </div>
+            <p class="who-card__role">VFX</p>
+          </article>
+
+          <article class="who-card reveal" data-cursor="media">
+            <div class="who-card__frame">
+              <img src="/images/team/anim.png" alt="Andreu Pellisa" />
+              <img class="who-card__mark" src="/images/mark-3.svg" alt="" />
+              <div class="who-card__bar">
+                <h2>Andreu<br />Pellisa</h2>
+                <span>Co-founder</span>
+              </div>
+            </div>
+            <p class="who-card__role">Animation</p>
+          </article>
+
+          <article class="who-card reveal" data-cursor="media">
+            <div class="who-card__frame">
+              <img src="/images/team/modeller.jpg" alt="Gabriel Casado" />
+              <img class="who-card__mark" src="/images/mark-3.svg" alt="" />
+              <div class="who-card__bar">
+                <h2>Gabriel<br />Casado</h2>
+                <span>Co-founder</span>
+              </div>
+            </div>
+            <p class="who-card__role">Modeller</p>
+          </article>
+        </div>
       </section>
 
-      <section class="section team">
-        <div class="team__grid team__grid--3">
-          <article class="team-card reveal" data-cursor="media">
-            <div class="team-card__media">
-              <img src="/images/team/modeller.jpg" alt="MAG Pictures modeller" />
-            </div>
-            <p class="team-card__role">Modeller</p>
-          </article>
-          <article class="team-card reveal" data-cursor="media">
-            <div class="team-card__media">
-              <img src="/images/team/vfx.jpg" alt="MAG Pictures VFX artist" />
-            </div>
-            <p class="team-card__role">VFX</p>
-          </article>
-          <article class="team-card reveal" data-cursor="media">
-            <div class="team-card__media">
-              <img src="/images/team/anim.png" alt="MAG Pictures animator" />
-            </div>
-            <p class="team-card__role">Animation</p>
-          </article>
-        </div>
+      <section class="craft">
+        <p class="label reveal">How we work</p>
+        <ul class="craft__grid">
+          <li class="reveal">
+            <img src="/images/icons/people.svg" alt="" />
+            <span>Collective</span>
+          </li>
+          <li class="reveal">
+            <img src="/images/icons/script.svg" alt="" />
+            <span>Script</span>
+          </li>
+          <li class="reveal">
+            <img src="/images/icons/brush.svg" alt="" />
+            <span>Concept</span>
+          </li>
+          <li class="reveal">
+            <img src="/images/icons/storyboard.svg" alt="" />
+            <span>Storyboard</span>
+          </li>
+          <li class="reveal">
+            <img src="/images/icons/dev.svg" alt="" />
+            <span>Build</span>
+          </li>
+          <li class="reveal">
+            <img src="/images/icons/idea.svg" alt="" />
+            <span>Look</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="manifesto">
+        <h2 class="manifesto__title reveal">
+          This is not a job.<br />
+          It is a work of art.
+        </h2>
+        <p class="manifesto__copy reveal">
+          We invite the best creatives to leave their mark alongside us.
+          Creating stories with emotional depth and unforgettable visuals.
+        </p>
+        <a class="text-link reveal" href="contact.html" data-cursor="link">
+          Join the collective
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
       </section>
     </main>
 
