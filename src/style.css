@@ -1069,41 +1069,39 @@ p {
   position: fixed;
   inset: 0;
   z-index: 95;
+  overflow: hidden;
+  mix-blend-mode: screen;
 }
 
 .chroma__r,
 .chroma__g,
 .chroma__b {
   position: absolute;
-  inset: 0;
-  -webkit-mask-image: radial-gradient(
-    ellipse 78% 74% at var(--cx) var(--cy),
-    transparent 42%,
-    #000 78%
+  inset: -18%;
+  transform-origin: var(--cx) var(--cy);
+  background: radial-gradient(
+    ellipse 120% 110% at var(--cx) var(--cy),
+    transparent 52%,
+    currentColor 100%
   );
-  mask-image: radial-gradient(
-    ellipse 78% 74% at var(--cx) var(--cy),
-    transparent 42%,
-    #000 78%
-  );
+  will-change: transform;
 }
 
 .chroma__r {
-  box-shadow:
-    inset calc(var(--ab-x) * 10px) calc(var(--ab-y) * 8px) 0 2px rgba(255, 32, 72, 0.95),
-    inset calc(var(--ab-x) * 18px) calc(var(--ab-y) * 14px) 36px 10px rgba(255, 20, 60, 0.45);
+  color: rgba(255, 8, 48, 0.7);
+  transform: scale(1.045);
+  filter: blur(0.8px);
 }
 
 .chroma__g {
-  box-shadow:
-    inset calc(var(--ab-x) * 3px) calc(var(--ab-y) * 2px) 0 1px rgba(90, 255, 140, 0.35),
-    inset 0 0 28px 8px rgba(80, 255, 150, 0.12);
+  color: rgba(70, 255, 130, 0.16);
+  transform: scale(1.01);
 }
 
 .chroma__b {
-  box-shadow:
-    inset calc(var(--ab-x) * -10px) calc(var(--ab-y) * -8px) 0 2px rgba(20, 200, 255, 0.95),
-    inset calc(var(--ab-x) * -18px) calc(var(--ab-y) * -14px) 36px 10px rgba(30, 190, 255, 0.45);
+  color: rgba(0, 170, 255, 0.7);
+  transform: scale(0.955);
+  filter: blur(0.8px);
 }
 
 .reel {
@@ -1178,21 +1176,29 @@ p {
 
 .ticker__track {
   display: flex;
-  gap: 2.5rem;
   width: max-content;
-  animation: ticker 28s linear infinite;
+  animation: ticker 42s linear infinite;
+}
+
+.ticker__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 2.75rem;
+  padding-right: 2.75rem;
   font-size: 0.72rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
 }
 
 @keyframes ticker {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
