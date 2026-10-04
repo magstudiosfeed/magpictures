@@ -88,7 +88,7 @@ function initHero() {
   const media = document.querySelector("[data-parallax]");
   const img = media?.querySelector("img");
   const brandBits = document.querySelectorAll(
-    ".hero__brand, .hero__title-sub, .eyebrow, .hero__content .text-link"
+    ".hero__title-sub, .eyebrow, .hero__content .text-link"
   );
 
   if (!reduceMotion && brandBits.length) {

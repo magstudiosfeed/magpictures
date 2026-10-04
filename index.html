@@ -45,9 +45,6 @@
 
         <div class="hero__content">
           <h1 class="hero__title">
-            <span class="hero__brand">
-              <img class="hero__logo" src="/images/logo-mag.png" alt="MAG Pictures" />
-            </span>
             <span class="hero__title-sub"
               >A 3D animation studio for film, games &amp; worlds that feel
               alive.</span
@@ -107,9 +104,10 @@
 
     <div class="player" id="reel-player" hidden>
       <div class="player__top">
-        <button class="player__back" type="button" data-close>
-          <span>Back</span>
-          <img src="/images/logo-mag.png" alt="MAG Pictures" width="120" height="54" />
+        <button class="player__back" type="button" data-close aria-label="Back">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z" />
+          </svg>
         </button>
         <img class="player__marks" src="/images/mark-3.svg" alt="" width="72" height="40" />
       </div>
@@ -129,7 +127,14 @@
         <span class="player__time" data-time>0:00</span>
         <input class="player__seek" type="range" min="0" max="1000" value="0" data-seek aria-label="Seek" />
         <span class="player__time" data-dur>0:00</span>
-        <button class="player__mute" type="button" data-mute aria-label="Mute"></button>
+        <button class="player__mute" type="button" data-mute aria-label="Mute">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M3 10v4h4l5 5V5L7 10H3zm13.5 2c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM16 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+            />
+          </svg>
+        </button>
         <button class="player__full" type="button" data-full aria-label="Fullscreen"></button>
       </div>
     </div>
