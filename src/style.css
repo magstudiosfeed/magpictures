@@ -734,12 +734,6 @@ p {
   margin-bottom: clamp(2.5rem, 6vw, 4rem);
 }
 
-.who__marks {
-  width: 64px;
-  height: auto;
-  margin-bottom: 0.85rem;
-}
-
 .who__title {
   display: grid;
   font-family: var(--font-display);
