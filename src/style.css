@@ -180,6 +180,14 @@ p {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), transparent);
 }
 
+body[data-page="about"] .site-header,
+body[data-page="work"] .site-header,
+body[data-page="expertise"] .site-header,
+body[data-page="team"] .site-header,
+body[data-page="contact"] .site-header {
+  background: var(--bg);
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -525,24 +533,29 @@ p {
 .about-split {
   display: grid;
   gap: 2.5rem;
-  padding: clamp(7rem, 14vw, 10rem) var(--pad) clamp(3rem, 6vw, 5rem);
+  padding: clamp(8.5rem, 12vw, 11rem) var(--pad) clamp(3rem, 6vw, 5rem);
   max-width: var(--max);
   margin: 0 auto;
-  align-items: center;
+  align-items: start;
 }
 
 .about-split .display {
-  max-width: 12ch;
+  max-width: 100%;
+  font-size: clamp(2.1rem, 4.4vw, 4rem);
+  line-height: 0.95;
+  overflow-wrap: normal;
 }
 
 .about-split .lede {
-  max-width: 38ch;
+  max-width: 42ch;
 }
 
 .about-split__copy {
   display: grid;
   gap: 1.15rem;
-  align-content: center;
+  align-content: start;
+  min-width: 0;
+  padding-top: 0.35rem;
 }
 
 .about-photo {
@@ -559,17 +572,17 @@ p {
   object-position: 62% 40%;
 }
 
-.about-body__grid {
+.about-body {
   display: grid;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  gap: 1.15rem;
+  margin-bottom: 1.25rem;
 }
 
-.about-body__grid p {
-  max-width: 42ch;
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+.about-body p {
+  max-width: 46ch;
+  font-size: clamp(1.02rem, 1.5vw, 1.18rem);
   font-weight: 300;
-  line-height: 1.6;
+  line-height: 1.65;
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -1242,9 +1255,10 @@ p {
   }
 
   .about-split {
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 4rem;
-    min-height: 72svh;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 3.5rem;
+    align-items: start;
+    min-height: 0;
   }
 
   .about__grid {
