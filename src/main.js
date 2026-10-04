@@ -2,8 +2,11 @@ import "./style.css";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { mountShell } from "./shell.js";
 
 gsap.registerPlugin(ScrollTrigger);
+
+mountShell();
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -84,31 +87,42 @@ function initReveals() {
 function initHero() {
   const media = document.querySelector("[data-parallax]");
   const img = media?.querySelector("img");
-  if (!media || !img || reduceMotion) return;
+  if (!media || !img) return;
 
-  gsap.fromTo(
-    ".hero__title > span:first-child, .hero__title-sub, .eyebrow, .hero__content .text-link",
-    { opacity: 0, y: 40 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: 1.1,
-      stagger: 0.12,
-      ease: "power3.out",
-      delay: 0.15,
-    }
-  );
+  if (!reduceMotion) {
+    gsap.fromTo(
+      ".hero__title > span:first-child, .hero__title-sub, .eyebrow, .hero__content .text-link",
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.1,
+        stagger: 0.12,
+        ease: "power3.out",
+        delay: 0.15,
+      }
+    );
 
-  gsap.to(img, {
-    yPercent: 14,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".hero",
-      start: "top top",
-      end: "bottom top",
-      scrub: true,
-    },
-  });
+    gsap.to(img, {
+      yPercent: 14,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  } else {
+    document
+      .querySelectorAll(
+        ".hero__title > span:first-child, .hero__title-sub, .eyebrow, .hero__content .text-link"
+      )
+      .forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+  }
 }
 
 function initServiceList() {
@@ -163,10 +177,9 @@ function initCursor() {
   });
 }
 
-const menuToggle = document.querySelector(".menu-toggle");
-const mobileNav = document.querySelector(".mobile-nav");
-
 function closeMobileNav() {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mobileNav = document.querySelector(".mobile-nav");
   if (!menuToggle || !mobileNav) return;
   menuToggle.setAttribute("aria-expanded", "false");
   mobileNav.hidden = true;
@@ -174,6 +187,8 @@ function closeMobileNav() {
 }
 
 function initMobileNav() {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mobileNav = document.querySelector(".mobile-nav");
   if (!menuToggle || !mobileNav) return;
 
   menuToggle.addEventListener("click", () => {

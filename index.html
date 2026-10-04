@@ -11,53 +11,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=Archivo+Black&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/png" href="/images/mark.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
-  <body>
+  <body data-page="home">
     <div class="cursor" aria-hidden="true">
       <div class="cursor__dot"></div>
       <div class="cursor__ring"></div>
     </div>
-
     <div class="noise" aria-hidden="true"></div>
 
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="MAG Pictures home">
-        <span class="brand__mark" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
-        <span class="brand__type">
-          <strong>MAG</strong>
-          <em>PICTURES</em>
-        </span>
-      </a>
+    <header class="site-header" id="site-header"></header>
+    <div class="mobile-nav" id="mobile-nav" hidden></div>
 
-      <nav class="nav" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#expertise">Expertise</a>
-        <a href="#team">Team</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-      </button>
-    </header>
-
-    <div class="mobile-nav" hidden>
-      <a href="#about">About</a>
-      <a href="#work">Work</a>
-      <a href="#expertise">Expertise</a>
-      <a href="#team">Team</a>
-      <a href="#contact">Contact</a>
-    </div>
-
-    <main id="top">
+    <main>
       <section class="hero">
         <div class="hero__media" data-parallax>
           <img src="/images/hero.jpg" alt="Cinematic character portrait by MAG Pictures" />
@@ -65,223 +34,42 @@
         </div>
 
         <div class="hero__content">
-          <p class="eyebrow">Stories in motion</p>
           <h1 class="hero__title">
             <span>MAG PICTURES</span>
-            <span class="hero__title-sub">A 3D animation studio for film, games &amp; worlds that feel alive.</span>
+            <span class="hero__title-sub"
+              >A 3D animation studio for film, games &amp; worlds that feel
+              alive.</span
+            >
           </h1>
-          <a class="text-link" href="#work" data-cursor="link">
-            Explore the work
+          <a class="text-link" href="work.html" data-cursor="link">
+            Stories in motion
             <span class="arrow" aria-hidden="true">→</span>
           </a>
         </div>
 
-        <div class="hero__scroll" aria-hidden="true">
-          <span>Scroll</span>
-        </div>
+        <div class="hero__scroll" aria-hidden="true"><span>Scroll</span></div>
       </section>
 
-      <section class="section expertise" id="expertise">
+      <section class="section home-strip">
         <div class="section__rule reveal"></div>
-        <div class="expertise__grid">
-          <div class="expertise__intro">
-            <p class="label reveal">Expertise</p>
-            <h2 class="display reveal">
-              Full-service 3D animation &amp; VFX studio
-            </h2>
-          </div>
-
-          <div class="expertise__copy">
-            <p class="lede reveal">
-              From first sketch to final frame — character work, environments,
-              lighting, and compositing built for cinematic impact.
-            </p>
-
-            <ol class="service-list" data-cursor="list">
-              <li class="reveal"><span>01</span> Character Design</li>
-              <li class="reveal"><span>02</span> Modeling &amp; Sculpting</li>
-              <li class="reveal"><span>03</span> Look Development</li>
-              <li class="reveal"><span>04</span> Animation</li>
-              <li class="reveal"><span>05</span> Environments</li>
-              <li class="reveal"><span>06</span> Lighting &amp; Rendering</li>
-              <li class="reveal"><span>07</span> Compositing &amp; Finaling</li>
-              <li class="reveal"><span>08</span> Pipeline &amp; Tooling</li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="work-mosaic" id="work">
-          <figure class="work-mosaic__main reveal">
-            <img
-              src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80"
-              alt="Abstract cinematic render"
-            />
-          </figure>
-          <figure class="reveal">
-            <img
-              src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=900&q=80"
-              alt="Motion graphics still"
-            />
-          </figure>
-          <figure class="reveal">
-            <img
-              src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=900&q=80"
-              alt="Dark atmospheric scene"
-            />
-          </figure>
-          <figure class="reveal">
-            <img
-              src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&w=900&q=80"
-              alt="Vivid color study"
-            />
-          </figure>
-        </div>
-      </section>
-
-      <section class="section about" id="about">
-        <div class="section__rule reveal"></div>
-        <div class="about__grid">
-          <p class="label reveal">About</p>
-          <div>
-            <h2 class="display reveal">Different backgrounds. Same vision.</h2>
-            <p class="lede reveal">
-              Artists, technical directors, and story people — one obsession:
-              images that move people. Minimal noise. Maximum craft.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section team" id="team">
-        <div class="team__head">
-          <h2 class="display reveal">The team</h2>
-          <a class="text-link reveal" href="#contact" data-cursor="link">
-            Meet the team
-            <span class="arrow" aria-hidden="true">→</span>
+        <div class="home-strip__grid">
+          <a class="home-card reveal" href="about.html" data-cursor="link">
+            <p class="label">About</p>
+            <h2>Different backgrounds. Same vision.</h2>
           </a>
-        </div>
-
-        <div class="team__grid">
-          <article class="team-card reveal" data-cursor="media">
-            <div class="team-card__media">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80"
-                alt="Portrait of Elias Vorn"
-              />
-            </div>
-            <p class="team-card__role">Creative Director</p>
-            <h3>Elias Vorn</h3>
-          </article>
-          <article class="team-card reveal" data-cursor="media">
-            <div class="team-card__media">
-              <img
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=80"
-                alt="Portrait of Mira Sol"
-              />
-            </div>
-            <p class="team-card__role">Animation Lead</p>
-            <h3>Mira Sol</h3>
-          </article>
-          <article class="team-card reveal" data-cursor="media">
-            <div class="team-card__media">
-              <img
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=80"
-                alt="Portrait of Kenji Aoki"
-              />
-            </div>
-            <p class="team-card__role">CG Supervisor</p>
-            <h3>Kenji Aoki</h3>
-          </article>
-          <article class="team-card reveal" data-cursor="media">
-            <div class="team-card__media">
-              <img
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80"
-                alt="Portrait of Ana Ruiz"
-              />
-            </div>
-            <p class="team-card__role">Look Dev</p>
-            <h3>Ana Ruiz</h3>
-          </article>
-          <article class="team-card reveal" data-cursor="media">
-            <div class="team-card__media">
-              <img
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=700&q=80"
-                alt="Portrait of Theo Marsh"
-              />
-            </div>
-            <p class="team-card__role">Compositor</p>
-            <h3>Theo Marsh</h3>
-          </article>
-        </div>
-      </section>
-
-      <section class="section clients">
-        <div class="section__rule reveal"></div>
-        <p class="label reveal">Selected clients</p>
-        <ul class="logo-row reveal" aria-label="Client logos">
-          <li>Netflix</li>
-          <li>Sony</li>
-          <li>Pixar</li>
-          <li>Ubisoft</li>
-          <li>Adobe</li>
-          <li>HBO</li>
-        </ul>
-      </section>
-
-      <section class="section awards">
-        <div class="awards__grid">
-          <figure class="awards__media reveal" data-cursor="media">
-            <img
-              src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=1200&q=80"
-              alt="Award trophy"
-            />
-          </figure>
-          <div>
-            <p class="label reveal">Recognition</p>
-            <ul class="award-list">
-              <li class="reveal"><span>2025</span> Annecy — Best Short Craft</li>
-              <li class="reveal"><span>2024</span> Clio — Gold, Animation</li>
-              <li class="reveal"><span>2024</span> VES — Outstanding FX</li>
-              <li class="reveal"><span>2023</span> ADC — Cube, Motion</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section contact" id="contact">
-        <div class="section__rule reveal"></div>
-        <div class="contact__grid">
-          <h2 class="display display--xl reveal">Let’s work together</h2>
-          <div class="contact__aside">
-            <p class="lede reveal">
-              New worlds. New characters. New frames that stick.
-              Tell us what you’re building.
-            </p>
-            <a class="text-link reveal" href="mailto:hello@magpictures.studio" data-cursor="link">
-              Get in touch
-              <span class="arrow" aria-hidden="true">→</span>
-            </a>
-            <p class="contact__meta reveal">
-              hello@magpictures.studio<br />
-              Barcelona · Remote
-            </p>
-          </div>
+          <a class="home-card reveal" href="expertise.html" data-cursor="link">
+            <p class="label">Expertise</p>
+            <h2>Full-service 3D &amp; VFX</h2>
+          </a>
+          <a class="home-card reveal" href="contact.html" data-cursor="link">
+            <p class="label">Contact</p>
+            <h2>Let’s work together</h2>
+          </a>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="site-footer__brand">
-        <img src="/images/logo.png" alt="MAG Pictures" width="120" height="120" />
-        <p>© 2026 MAG Pictures</p>
-      </div>
-      <div class="socials">
-        <a href="#" aria-label="Instagram" data-cursor="link">IG</a>
-        <a href="#" aria-label="LinkedIn" data-cursor="link">LI</a>
-        <a href="#" aria-label="Vimeo" data-cursor="link">VM</a>
-      </div>
-    </footer>
-
+    <footer class="site-footer" id="site-footer"></footer>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
