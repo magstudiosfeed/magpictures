@@ -1068,36 +1068,42 @@ p {
   pointer-events: none;
   position: fixed;
   inset: 0;
-  z-index: 90;
-  mix-blend-mode: screen;
+  z-index: 95;
 }
 
 .chroma__r,
 .chroma__g,
 .chroma__b {
   position: absolute;
-  inset: -24px;
-  border-style: solid;
-  border-width: 3px;
-  -webkit-mask-image: radial-gradient(ellipse 72% 70% at var(--cx) var(--cy), transparent 38%, #000 82%);
-  mask-image: radial-gradient(ellipse 72% 70% at var(--cx) var(--cy), transparent 38%, #000 82%);
+  inset: 0;
+  -webkit-mask-image: radial-gradient(
+    ellipse 78% 74% at var(--cx) var(--cy),
+    transparent 42%,
+    #000 78%
+  );
+  mask-image: radial-gradient(
+    ellipse 78% 74% at var(--cx) var(--cy),
+    transparent 42%,
+    #000 78%
+  );
 }
 
 .chroma__r {
-  border-color: rgba(255, 28, 64, 0.95);
-  transform: translate(calc(var(--ab-x) * 14px), calc(var(--ab-y) * 12px));
-  filter: blur(0.35px);
+  box-shadow:
+    inset calc(var(--ab-x) * 10px) calc(var(--ab-y) * 8px) 0 2px rgba(255, 32, 72, 0.95),
+    inset calc(var(--ab-x) * 18px) calc(var(--ab-y) * 14px) 36px 10px rgba(255, 20, 60, 0.45);
 }
 
 .chroma__g {
-  border-color: rgba(80, 255, 140, 0.28);
-  transform: translate(calc(var(--ab-x) * 3px), calc(var(--ab-y) * 2px));
+  box-shadow:
+    inset calc(var(--ab-x) * 3px) calc(var(--ab-y) * 2px) 0 1px rgba(90, 255, 140, 0.35),
+    inset 0 0 28px 8px rgba(80, 255, 150, 0.12);
 }
 
 .chroma__b {
-  border-color: rgba(30, 200, 255, 0.95);
-  transform: translate(calc(var(--ab-x) * -14px), calc(var(--ab-y) * -12px));
-  filter: blur(0.35px);
+  box-shadow:
+    inset calc(var(--ab-x) * -10px) calc(var(--ab-y) * -8px) 0 2px rgba(20, 200, 255, 0.95),
+    inset calc(var(--ab-x) * -18px) calc(var(--ab-y) * -14px) 36px 10px rgba(30, 190, 255, 0.45);
 }
 
 .reel {
