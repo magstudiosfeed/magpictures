@@ -1293,16 +1293,27 @@ p {
   display: grid;
   align-items: end;
   padding: 0;
-  min-height: 100svh;
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 21 / 9;
+  overflow: hidden;
 }
 
 .hero--reel .hero__content {
   position: absolute;
   left: 0;
-  bottom: 4.5rem;
+  bottom: clamp(1.1rem, 3.6vw, 3.4rem);
   z-index: 3;
   padding: 0 var(--pad) 0 calc(var(--pad) + 2.2rem);
   pointer-events: none;
+}
+
+.hero--reel .hero__logo {
+  width: clamp(132px, 22vw, 340px);
+}
+
+.hero--reel .hero__content .text-link {
+  margin-top: clamp(0.45rem, 1.4vw, 1.6rem);
 }
 
 .hero--reel .hero__content a {
@@ -1317,10 +1328,12 @@ p {
 }
 
 .reel {
-  position: relative;
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  min-height: 100svh;
+  height: 100%;
+  min-height: 0;
   overflow: clip;
   background: #000;
 }
@@ -1331,6 +1344,7 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .reel__hint {
@@ -1502,7 +1516,7 @@ body.player-open .site-header {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   background: #000;
 }
